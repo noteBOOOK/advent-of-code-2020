@@ -16,7 +16,7 @@ const countTrees = data => {
     y++;
 
     if (x > xMax) {
-      x -= xMax;
+      x -= xMax + 1;
     }
 
     if (data[y][x] === '#'){
