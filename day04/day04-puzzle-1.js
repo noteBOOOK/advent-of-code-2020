@@ -1,7 +1,5 @@
 const readFile = require('fs').readFileSync;
-
 const file = readFile('./day04-data', 'utf-8').split('\n\n');
-
 const data = file.map((e) => e.split(/[ '\n']+/));
 
 const checkPassport = data => {
@@ -17,6 +15,7 @@ const checkPassport = data => {
       ecl: false,
       pid: false,
     }
+
     passport.forEach(validations => {
       [validation, value] = validations.split(":")
       if (passportValidations.hasOwnProperty(validation)) {
@@ -28,6 +27,7 @@ const checkPassport = data => {
       validPassports++;
     }
   })
+  
   return validPassports;
 }
 
