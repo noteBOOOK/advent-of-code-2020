@@ -50,33 +50,53 @@ const validatePID = id => {
   return false;
 }
 
-console.log(validatePID('000000001'));
+const checkPassport = data => {
+  validPassports = 0;
+  data.forEach(passport => {
+    const passportValidations = {
+      byr: false,
+      iyr: false,
+      eyr: false,
+      hgt: false,
+      hcl: false,
+      ecl: false,
+      pid: false,
+    }
 
-// const checkPassport = data => {
-//   validPassports = 0;
-//   data.forEach(passport => {
-//     const passportValidations = {
-//       byr: false,
-//       iyr: false,
-//       eyr: false,
-//       hgt: false,
-//       hcl: false,
-//       ecl: false,
-//       pid: false,
-//     }
+    passport.forEach(validations => {
+      [validation, value] = validations.split(":")
 
-//     passport.forEach(validations => {
-//       [validation, value] = validations.split(":")
-//       // if (passportValidations.hasOwnProperty(validation)) {
-//       //   passportValidations[validation] = true;
-//       // }
-//       console.log("CHECK HERE!!!!!!!", validation, value);
-//     })
+      switch(validation) {
+        case 'byr':
+          passportValidations[validation] = validateYear(value, 1920, 2002);
+          break;
+        case 'iyr':
+          passportValidations[validation] = validateYear(value, 2010, 2020);
+          break;
+        case 'eyr':
+          passportValidations[validation] = validateYear(value, 2020, 2030);
+          break;
+        case 'hgt':
+          passportValidations[validation] = validateHeight(value);
+          break;
+        case 'hcl':
+          passportValidations[validation] = validateHairColor(value);
+          break;
+        case 'ecl':
+          passportValidations[validation] = validateEyeColor(value);
+          break;
+        case 'pid':
+          passportValidations[validation] = validatePID(value);
+          break;
+      }
+    })
 
-//     if (Object.values(passportValidations).every((value) => value === true)) {
-//       validPassports++;
-//     }
-//   })
+    if (Object.values(passportValidations).every((value) => value === true)) {
+      validPassports++;
+    }
+  })
   
-//   return validPassports;
-// }
+  return validPassports;
+}
+
+console.log(checkPassport(data));
