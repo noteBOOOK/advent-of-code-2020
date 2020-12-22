@@ -31,8 +31,26 @@ const validateHairColor = hair => {
   return false;
 }
 
+const validateEyeColor = eye => {
+  const validColors = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'];
+  if (validColors.includes(eye)) {
+    return true;
+  }
+  return false;
+}
 
-console.log(validateHairColor('#12eabc'));
+const validatePID = id => {
+  const regex = /[0-9]{9}/
+
+  if (id.length === 9) {
+    if (regex.test(id)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+console.log(validatePID('000000001'));
 
 // const checkPassport = data => {
 //   validPassports = 0;
