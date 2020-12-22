@@ -12,10 +12,15 @@ const validateYear = (year, min, max) => {
 const validateHeight = height => {
   const unit = height.slice(-2);
   const value = height.slice(0, height.length - 2)
-  console.log(value, unit);
+
+  if (unit === "cm") {
+    return value >= 150 && value <= 193;
+  } else if (unit === "in") {
+    return value >= 59 && value <= 76;
+  }
 }
 
-validateHeight('190cm');
+console.log(validateHeight('150cm'));
 
 // const checkPassport = data => {
 //   validPassports = 0;
