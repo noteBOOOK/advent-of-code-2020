@@ -20,7 +20,19 @@ const validateHeight = height => {
   }
 }
 
-console.log(validateHeight('150cm'));
+const validateHairColor = hair => {
+  const regex = /#[0-9a-f]{6}/
+
+  if (hair.length === 7){
+    if (regex.test(hair)){
+      return true;
+    }
+  }
+  return false;
+}
+
+
+console.log(validateHairColor('#12eabc'));
 
 // const checkPassport = data => {
 //   validPassports = 0;
